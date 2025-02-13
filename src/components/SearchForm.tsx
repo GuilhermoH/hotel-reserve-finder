@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, User2Icon, QrCodeIcon } from "lucide-react";
+import { CalendarIcon, User2Icon, QrCodeIcon, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -14,10 +14,16 @@ export const SearchForm = () => {
   const [date, setDate] = useState<Date>();
   const [surname, setSurname] = useState("");
   const [code, setCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    
+    // Simulate API call with timeout
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
     navigate("/results", { 
       state: { 
         date: date?.toISOString(),
@@ -25,6 +31,8 @@ export const SearchForm = () => {
         code 
       } 
     });
+    
+    setIsLoading(false);
   };
 
   return (
@@ -90,9 +98,16 @@ export const SearchForm = () => {
       <Button 
         type="submit" 
         className="w-full bg-primary hover:bg-primary/90 text-white"
-        disabled={!date && !surname && !code}
+        disabled={(!date && !surname && !code) || isLoading}
       >
-        Encontrar Reserva
+        {isLoading ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Buscando...
+          </>
+        ) : (
+          "Encontrar Reserva"
+        )}
       </Button>
     </form>
   );
