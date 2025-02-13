@@ -43,7 +43,7 @@ export const SearchForm = () => {
                 !date && "text-muted-foreground"
               )}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
+              <CalendarIcon className="mr-2 h-4 w-4 text-primary" />
               {date ? format(date, "PPP", { locale: ptBR }) : "Insira a data da sua reserva"}
             </Button>
           </PopoverTrigger>
@@ -62,7 +62,7 @@ export const SearchForm = () => {
       <div className="space-y-2">
         <label className="text-lg font-medium">Sobrenome da reserva</label>
         <div className="relative">
-          <User2Icon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <User2Icon className="absolute left-3 top-3 h-5 w-5 text-primary" />
           <Input
             value={surname}
             onChange={(e) => setSurname(e.target.value)}
@@ -77,7 +77,7 @@ export const SearchForm = () => {
       <div className="space-y-2">
         <label className="text-lg font-medium">Código da reserva</label>
         <div className="relative">
-          <QrCodeIcon className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+          <QrCodeIcon className="absolute left-3 top-3 h-5 w-5 text-primary" />
           <Input
             value={code}
             onChange={(e) => setCode(e.target.value)}

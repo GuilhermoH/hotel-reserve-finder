@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -96,7 +95,11 @@ const Results = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="h-64 bg-gray-100 rounded-lg" />
+              <img 
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+                alt="Hotel view"
+                className="h-64 w-full object-cover rounded-lg"
+              />
               <div className="space-y-2">
                 <h3 className="flex items-center gap-2 font-medium">
                   <MapPin className="h-5 w-5" />
