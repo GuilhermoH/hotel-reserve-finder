@@ -1,13 +1,17 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useState } from "react";
+import { GuestFormDialog } from "@/components/GuestFormDialog";
 
 const Results = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { date } = location.state || {};
+  const [guestFormOpen, setGuestFormOpen] = useState(false);
 
   const mockData = {
     hotelName: "Hotel Kollet",
@@ -71,7 +75,10 @@ const Results = () => {
                 </div>
               </div>
 
-              <Button className="w-full bg-primary hover:bg-primary/90 text-white">
+              <Button 
+                className="w-full bg-primary hover:bg-primary/90 text-white"
+                onClick={() => setGuestFormOpen(true)}
+              >
                 Confirmar Hóspedes
               </Button>
 
@@ -117,6 +124,11 @@ const Results = () => {
           </Button>
         </div>
       </div>
+
+      <GuestFormDialog 
+        open={guestFormOpen}
+        onOpenChange={setGuestFormOpen}
+      />
     </div>
   );
 };
